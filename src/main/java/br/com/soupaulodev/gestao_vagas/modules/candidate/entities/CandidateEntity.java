@@ -6,8 +6,10 @@ import java.util.UUID;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.Length;
 
-import jakarta.annotation.Generated;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -19,9 +21,10 @@ import lombok.Data;
 public class CandidateEntity {
     
     @Id
-    @Generated(value = "UUID")
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     
+    @NotBlank
     private String name;
 
     @NotBlank
@@ -33,9 +36,11 @@ public class CandidateEntity {
 
     @Length(min = 8, message = "O campo [password] deve conter pelo menos 8 caracteres")
     private String password;
+    
     private String description;
     private String curriculum;
 
+    @Column(name = "created_at")
     @CreationTimestamp
     private LocalDateTime createdAt;
 }
