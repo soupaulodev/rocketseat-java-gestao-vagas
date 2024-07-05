@@ -35,7 +35,7 @@ public class CompanyController {
         }
     }
     
-    
+
     @PostMapping("/")
     public ResponseEntity<Object> create(@Valid @RequestBody CompanyEntity companyEntity) {
         try {
